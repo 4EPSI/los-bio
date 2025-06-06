@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "app-icons";
+    src: url("./app-icons.woff2?acead6778edcc7e22991d1fb8363c3d6") format("woff2"),
+url("./app-icons.woff?acead6778edcc7e22991d1fb8363c3d6") format("woff");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: app-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-phone:before {
+    content: "\f101";
+}
+.icon-map:before {
+    content: "\f102";
+}
+.icon-email:before {
+    content: "\f103";
+}
+.icon-arrow-right:before {
+    content: "\f104";
+}

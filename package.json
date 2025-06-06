@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "icons": "fantasticon",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/fonts": "0.11.4",
+    "@nuxt/image": "1.10.0",
+    "nuxt": "^3.15.4",
+    "vue": "^3.5.16",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "fantasticon": "^3.0.0",
+    "nuxt-svgo": "^4.2.1",
+    "sass": "^1.89.1"
+  }
+}
