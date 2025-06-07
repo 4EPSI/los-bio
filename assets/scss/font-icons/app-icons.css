@@ -1,7 +1,7 @@
 @font-face {
     font-family: "app-icons";
-    src: url("./app-icons.woff2?acead6778edcc7e22991d1fb8363c3d6") format("woff2"),
-url("./app-icons.woff?acead6778edcc7e22991d1fb8363c3d6") format("woff");
+    src: url("./app-icons.woff2?03202167d293746b5609e7ed11b044fc") format("woff2"),
+url("./app-icons.woff?03202167d293746b5609e7ed11b044fc") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -26,4 +26,7 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 }
 .icon-arrow-right:before {
     content: "\f104";
+}
+.icon-arrow-down:before {
+    content: "\f105";
 }

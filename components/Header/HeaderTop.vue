@@ -14,7 +14,14 @@
 </template>
 
 <script lang="ts" setup>
-const contacts = [
+type Contacts = {
+  icon: string
+  type: string
+  link: string
+  name: string
+}
+
+const contacts: Contacts[] = [
   {
     icon: 'icon-map',
     type: 'map',
@@ -67,6 +74,10 @@ a {
   font-size: 13px;
   font-weight: 400;
   color: #80808c;
+  transition: all .3s ease;
+  &:hover {
+    color: var(--primary-color)
+  }
 }
 i {
   color: var(--primary-color);
@@ -76,4 +87,35 @@ i {
     font-size: 24px;
   }
 }
+// @media (max-width: 1024px) {
+//   .header-top-container {
+//     gap: 20px;
+//     justify-content: flex-start;
+//   }
+
+//   .header-top-content {
+//     width: 48%;
+//     margin-bottom: 10px;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .header-top-container {
+//     flex-direction: column;
+//     gap: 12px;
+//     align-items: flex-start;
+//   }
+
+//   .header-top-content {
+//     width: 100%;
+//   }
+
+//   .header-top-link {
+//     font-size: 14px;
+//   }
+
+//   i::before {
+//     font-size: 20px;
+//   }
+// }
 </style>

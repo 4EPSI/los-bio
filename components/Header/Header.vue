@@ -1,13 +1,13 @@
 <template>
   <header class="header">
     <HeaderTop />
-    <!-- <HeaderMain /> -->
+    <HeaderMain />
   </header>
 </template>
 
 <script setup>
 import HeaderTop from './HeaderTop.vue'
-// import HeaderMain from './Header/HeaderMain.vue'
+import HeaderMain from './HeaderMain.vue'
 </script>
 
 <style lang="scss" scoped>
