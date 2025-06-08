@@ -1,5 +1,5 @@
 <template>
-  <div class="container header-main">
+  <div class="container header-main" ref="menuRef">
     <nuxt-link class="logo" to="/">
       <img src="/images/logo.svg" alt="logo">
     </nuxt-link>
@@ -16,13 +16,24 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useClickOutside } from '~/composables/useClickOutside'
 import NavMenu from '~/components/Header/NavMenu.vue'
 import CallToActionButton from '~/components/UI/CallToActionButton.vue'
 
 const isOpen = ref(false)
+const menuRef = ref<HTMLElement | null>(null)
+
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
+
+useClickOutside(
+  () => document.querySelector('.nav-menu.open') as HTMLElement | null,
+  () => {
+    isOpen.value = false
+  },
+  ['.burger']
+)
 
 const menuItems = [
   { label: 'О компании', to: '/' },

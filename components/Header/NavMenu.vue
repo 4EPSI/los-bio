@@ -1,24 +1,44 @@
 <template>
   <nav class="nav-menu" :class="{ open: isOpen }">
     <template v-for="item in menuItems" :key="item.label">
-      <div v-if="item.dropdown" class="dropdown" @click="toggleDropdown(item.label)">
+      <div
+        v-if="item.dropdown"
+        class="dropdown"
+        :class="{ 'is-open': openedDropdown === item.label }"
+        ref="dropdownRef"
+        @click="toggleDropdown(item.label)"
+      >
         <span class="dropdown-toggle">
           {{ item.label }}
           <i class="icon-arrow-down" :class="{ rotated: openedDropdown === item.label }" />
         </span>
         <div class="dropdown-menu" v-show="openedDropdown === item.label">
-          <nuxt-link v-for="subItem in item.items" :key="subItem.label" :to="subItem.to">
+          <nuxt-link
+            v-for="subItem in item.items"
+            :key="subItem.label"
+            :to="subItem.to"
+            @click="$emit('close')"
+          >
             {{ subItem.label }}
           </nuxt-link>
         </div>
       </div>
-      <nuxt-link v-else :to="item.to" @click="$emit('close')">{{ item.label }}</nuxt-link>
+
+      <nuxt-link
+        v-else
+        :to="item.to"
+        class="nav-link"
+        @click="$emit('close')"
+      >
+        {{ item.label }}
+      </nuxt-link>
     </template>
   </nav>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useClickOutside } from '~/composables/useClickOutside'
 
 type SubItem = { label: string; to: string }
 type MenuItem = {
@@ -35,11 +55,19 @@ defineProps<{
 
 const emit = defineEmits(['close'])
 
+// const dropdownRef = ref<HTMLElement | null>(null)
 const openedDropdown = ref<string | null>(null)
 
 const toggleDropdown = (label: string) => {
   openedDropdown.value = openedDropdown.value === label ? null : label
 }
+
+useClickOutside(
+  () => document.querySelector('.dropdown.is-open') as HTMLElement | null,
+  () => {
+    openedDropdown.value = null
+  }
+)
 </script>
 
 <style scoped lang="scss">
@@ -59,6 +87,7 @@ const toggleDropdown = (label: string) => {
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
+
     &:hover {
       color: var(--primary-color);
     }
@@ -68,6 +97,7 @@ const toggleDropdown = (label: string) => {
     position: relative;
 
     .dropdown-menu {
+      display: none;
       position: absolute;
       top: 100%;
       left: 0;
@@ -75,10 +105,13 @@ const toggleDropdown = (label: string) => {
       padding: 10px;
       border-radius: 4px;
       z-index: 10;
-      display: none;
     }
 
     &:hover .dropdown-menu {
+      display: block;
+    }
+
+    &.is-open .dropdown-menu {
       display: block;
     }
   }
@@ -95,7 +128,7 @@ const toggleDropdown = (label: string) => {
 
   @media (max-width: 768px) {
     flex-direction: column;
-    gap: 20px;
+    align-items: flex-start;
     background: #000;
     padding: 20px;
     position: absolute;
@@ -104,15 +137,35 @@ const toggleDropdown = (label: string) => {
     width: 100%;
     z-index: 1000;
     display: none;
+    gap: 16px;
 
     &.open {
       display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .dropdown-menu {
-      position: static;
-      display: block;
-      padding-left: 16px;
+    .dropdown {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .dropdown-menu {
+        display: none;
+        position: static;
+        padding: 10px 0 0 12px;
+        background: transparent;
+      }
+
+      &.is-open .dropdown-menu {
+        display: block;
+      }
+    }
+
+    a,
+    .dropdown-toggle {
+      font-size: 18px;
     }
   }
 }
