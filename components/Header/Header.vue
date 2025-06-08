@@ -11,6 +11,12 @@ import HeaderMain from './HeaderMain.vue'
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 768px)  {
+  .header {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
 // .header {
 //   padding: 10px 0;
 //   background: var(--bg-color);

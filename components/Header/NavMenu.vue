@@ -1,26 +1,25 @@
 <template>
-  <nav class="nav-menu">
+  <nav class="nav-menu" :class="{ open: isOpen }">
     <template v-for="item in menuItems" :key="item.label">
-      <div v-if="item.dropdown" class="dropdown">
-        <span class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-          {{ item.label }} <i class="icon-arrow-down"></i>
+      <div v-if="item.dropdown" class="dropdown" @click="toggleDropdown(item.label)">
+        <span class="dropdown-toggle">
+          {{ item.label }}
+          <i class="icon-arrow-down" :class="{ rotated: openedDropdown === item.label }" />
         </span>
-        <div class="dropdown-menu">
-          <nuxt-link
-            v-for="(subItem, subIndex) in item.items"
-            :key="subItem.label"
-            :to="subItem.to"
-          >
+        <div class="dropdown-menu" v-show="openedDropdown === item.label">
+          <nuxt-link v-for="subItem in item.items" :key="subItem.label" :to="subItem.to">
             {{ subItem.label }}
           </nuxt-link>
         </div>
       </div>
-      <nuxt-link v-else :to="item.to">{{ item.label }}</nuxt-link>
+      <nuxt-link v-else :to="item.to" @click="$emit('close')">{{ item.label }}</nuxt-link>
     </template>
   </nav>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 type SubItem = { label: string; to: string }
 type MenuItem = {
   label: string
@@ -31,7 +30,16 @@ type MenuItem = {
 
 defineProps<{
   menuItems: MenuItem[]
+  isOpen: boolean
 }>()
+
+const emit = defineEmits(['close'])
+
+const openedDropdown = ref<string | null>(null)
+
+const toggleDropdown = (label: string) => {
+  openedDropdown.value = openedDropdown.value === label ? null : label
+}
 </script>
 
 <style scoped lang="scss">
@@ -41,12 +49,12 @@ defineProps<{
   justify-content: center;
   gap: clamp(16px, 4vw, 56px);
 
-  a, .dropdown-toggle {
+  a,
+  .dropdown-toggle {
     color: white;
     text-decoration: none;
     font-size: 16px;
     font-weight: 400;
-    position: relative;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -60,7 +68,6 @@ defineProps<{
     position: relative;
 
     .dropdown-menu {
-      display: none;
       position: absolute;
       top: 100%;
       left: 0;
@@ -68,33 +75,45 @@ defineProps<{
       padding: 10px;
       border-radius: 4px;
       z-index: 10;
-
-      a {
-        display: block;
-        padding: 5px 10px;
-        white-space: nowrap;
-      }
+      display: none;
     }
 
     &:hover .dropdown-menu {
       display: block;
     }
   }
-}
 
-.icon-arrow-down {
-  display: flex;
-  align-items: center;
-  margin-left: 6px;
-  color: #ffffff40;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
-  &::before {
-    font-size: 14px;
+  .icon-arrow-down {
+    margin-left: 6px;
+    color: #ffffff40;
+    transition: transform 0.3s ease;
   }
-}
 
-.dropdown:hover .dropdown-toggle .icon-arrow-down {
-  transform: rotate(180deg);
+  .rotated {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+    background: #000;
+    padding: 20px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+
+    &.open {
+      display: flex;
+    }
+
+    .dropdown-menu {
+      position: static;
+      display: block;
+      padding-left: 16px;
+    }
+  }
 }
 </style>

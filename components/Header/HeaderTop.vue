@@ -87,6 +87,38 @@ i {
     font-size: 24px;
   }
 }
+
+// @media (max-width: 1024px) {
+//   .header-top-container {
+//     gap: 20px;
+//     justify-content: flex-start;
+//   }
+
+//   .header-top-content {
+//     width: 48%;
+//     margin-bottom: 10px;
+//   }
+// }
+
+@media (max-width: 768px) {
+  .header-top-container {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .header-top-content {
+    width: 100%;
+  }
+
+  a {
+    font-size: 14px;
+  }
+
+  i::before {
+    font-size: 20px;
+  }
+}
 // @media (max-width: 1024px) {
 //   .header-top-container {
 //     gap: 20px;
