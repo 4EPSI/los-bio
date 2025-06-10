@@ -16,5 +16,8 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: #1a5fa5;
+  }
 }
 </style>

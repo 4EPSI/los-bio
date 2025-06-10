@@ -1,7 +1,7 @@
 @font-face {
     font-family: "app-icons";
-    src: url("./app-icons.woff2?03202167d293746b5609e7ed11b044fc") format("woff2"),
-url("./app-icons.woff?03202167d293746b5609e7ed11b044fc") format("woff");
+    src: url("./app-icons.woff2?85359ec312393ef132fe393ec4945e2d") format("woff2"),
+url("./app-icons.woff?85359ec312393ef132fe393ec4945e2d") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -18,15 +18,21 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-phone:before {
     content: "\f101";
 }
-.icon-map:before {
+.icon-phone-bg:before {
     content: "\f102";
 }
-.icon-email:before {
+.icon-map:before {
     content: "\f103";
 }
-.icon-arrow-right:before {
+.icon-mail:before {
     content: "\f104";
 }
-.icon-arrow-down:before {
+.icon-email:before {
     content: "\f105";
+}
+.icon-arrow-right:before {
+    content: "\f106";
+}
+.icon-arrow-down:before {
+    content: "\f107";
 }

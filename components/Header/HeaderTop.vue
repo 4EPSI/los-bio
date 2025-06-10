@@ -58,13 +58,13 @@ const contacts: Contacts[] = [
 <style lang="scss" scoped>
 .header-top {
   padding: 12px 0 12px 0;
+  border: 1px solid #FFFFFF26;
   &-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     // gap: 82px;
   }
-  border: 1px solid #FFFFFF26;
   &-content {
     display: flex;
     align-items: center;
