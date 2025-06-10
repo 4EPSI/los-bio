@@ -8,18 +8,60 @@
         <UIButton>Перейти в каталог</UIButton>
       </div>
       <div class="home-slider">
-        <!-- <img src="../assets//images/home-slider.svg" alt="img"> -->
-         <!-- <nuxt-img src="/images/home-slider.svg"></nuxt-img> -->
-        <!-- <SvgoHomeSlider /> -->
+        <nuxt-img
+          src="/images/home-slider.svg"
+          alt="img"
+          class="banner-image"
+          :width="364"
+          :height="482"
+        />
       </div>
     </div>
+    
+    <SwiperSlider :slides="3">
+      <template #slide-0>
+        1234
+         <nuxt-img
+          src="/images/home-slider.svg"
+          alt="img"
+          class="banner-image"
+          :width="364"
+          :height="482"
+        />
+      </template>
+
+      <template #slide-1>
+        5555
+         <nuxt-img
+          src="/images/home-slider.svg"
+          alt="img"
+          class="banner-image"
+          :width="364"
+          :height="482"
+        />
+      </template>
+
+      <template #slide-2>
+        555533333
+         <nuxt-img
+          src="/images/home-slider.svg"
+          alt="img"
+          class="banner-image"
+          :width="364"
+          :height="482"
+        />
+      </template>
+    </SwiperSlider>
   </div>
 </template>
 
 <script lang="ts" setup>
 import UIButton from '~/components/UI/UIButton.vue'
+import SwiperSlider from '~/components/SwiperSlider.vue'
 
 const { data, pending, error } = await useFetch('https://api.los-bio.ru/info/group/slide')
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -27,32 +69,28 @@ const { data, pending, error } = await useFetch('https://api.los-bio.ru/info/gro
   padding-top: 80px;
   padding-bottom: 148px;
 &-block {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
 }
   &-content {
     h1 {
       font-weight: 700;
       margin-bottom: 30px;
+      line-height: 100%;
     }
     p {
-      margin-bottom: 60px;
+      margin-bottom: 110px;
+      line-height: 150%;
+    }
+  }
+  &-slider {
+    img {
+      height: 100%;
     }
   }
 }
 :deep(.btn) {
   padding: 16px 40px;
   border-radius: 12px;
-}
-
-
-
-
-
-.home-slider {
-  svg {
-    max-width: 100%;
-    height: auto;
-    fill: currentColor;
-  }
 }
 </style>

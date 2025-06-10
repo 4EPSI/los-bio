@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/fonts', 
     '@nuxt/image',
-    'nuxt-svgo'
+    'nuxt-svgo',
+    'nuxt-swiper'
   ],
   svgo: {
     autoImportPath: './assets/icons/',
