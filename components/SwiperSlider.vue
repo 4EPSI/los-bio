@@ -6,21 +6,24 @@
       @slide-change="updateCurrentIndex"
       class="custom-swiper"
     >
-      <SwiperSlide v-for="(_, index) in slideCount" :key="index">
-        <slot :name="`slide-${index}`"></slot>
+      <SwiperSlide
+        v-for="(_, index) in slideSlotCount"
+        :key="index"
+      >
+        <slot :name="`slide-${index}`" />
       </SwiperSlide>
     </Swiper>
 
-    <div class="custom-pagination">
+    <div class="custom-pagination" v-if="slideSlotCount > 1">
       <div class="pagination-bullets">
         <div
-          v-for="index in slideCount"
+          v-for="index in slideSlotCount"
           :key="index"
           class="bullet"
-          :class="{ 'active': currentIndex === index - 1 }"
+          :class="{ active: currentIndex === index - 1 }"
           @click="goToSlide(index - 1)"
         >
-          <div class="bullet-inner"></div>
+          <div class="bullet-inner" />
         </div>
       </div>
     </div>
@@ -31,20 +34,12 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/pagination'
-import { ref, computed } from 'vue'
+import { ref, computed, useSlots } from 'vue'
 
-const props = defineProps({
-  slideCount: {
-    type: Number,
-    required: true,
-    default: 3
-  }
-})
-
-const modules = [Pagination]
 const swiperInstance = ref<any>(null)
 const currentIndex = ref(0)
+
+const modules = [Pagination]
 
 const setSwiper = (swiper: any) => {
   swiperInstance.value = swiper
@@ -57,10 +52,15 @@ const updateCurrentIndex = () => {
 }
 
 const goToSlide = (index: number) => {
-  if (swiperInstance.value) {
-    swiperInstance.value.slideTo(index)
-  }
+  swiperInstance.value?.slideTo(index)
 }
+
+const slots = useSlots()
+const slideSlotCount = computed(() => {
+  return Object.keys(slots).filter((slotName) =>
+    /^slide-\d+$/.test(slotName)
+  ).length
+})
 </script>
 
 <style lang="scss" scoped>
@@ -77,7 +77,7 @@ const goToSlide = (index: number) => {
 
 .custom-pagination {
   position: absolute;
-  bottom: 30px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   display: flex;

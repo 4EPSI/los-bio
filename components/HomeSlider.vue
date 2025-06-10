@@ -1,55 +1,28 @@
 <template>
   <div class="home">
-    <div class="home-block">
-      <div class="home-content">
-        <h1>Автономная канализация для частного дома</h1>
-        <p>Производим автономные канализации, очистные сооружения, накопительные ёмкости и различные комплектующие к ним.</p>
-
-        <UIButton>Перейти в каталог</UIButton>
-      </div>
-      <div class="home-slider">
-        <nuxt-img
-          src="/images/home-slider.svg"
-          alt="img"
-          class="banner-image"
-          :width="364"
-          :height="482"
-        />
-      </div>
-    </div>
-    
-    <SwiperSlider :slides="3">
+    <SwiperSlider>
       <template #slide-0>
-        1234
-         <nuxt-img
-          src="/images/home-slider.svg"
-          alt="img"
-          class="banner-image"
-          :width="364"
-          :height="482"
-        />
+        <div class="home-block">
+          <div class="home-content">
+            <h1>Автономная канализация для частного дома</h1>
+            <p>Производим автономные канализации, очистные сооружения, накопительные ёмкости и различные комплектующие к ним.</p>
+    
+            <UIButton>Перейти в каталог</UIButton>
+          </div>
+          <div class="home-slider">
+            <nuxt-img
+              src="/images/home-slider.svg"
+              alt="img"
+              class="banner-image"
+              :width="364"
+              :height="482"
+            />
+          </div>
+        </div>
       </template>
 
       <template #slide-1>
-        5555
-         <nuxt-img
-          src="/images/home-slider.svg"
-          alt="img"
-          class="banner-image"
-          :width="364"
-          :height="482"
-        />
-      </template>
-
-      <template #slide-2>
-        555533333
-         <nuxt-img
-          src="/images/home-slider.svg"
-          alt="img"
-          class="banner-image"
-          :width="364"
-          :height="482"
-        />
+        123
       </template>
     </SwiperSlider>
   </div>
@@ -66,6 +39,7 @@ const { data, pending, error } = await useFetch('https://api.los-bio.ru/info/gro
 
 <style lang="scss" scoped>
 .home {
+  height: 90vh;
   padding-top: 80px;
   padding-bottom: 148px;
 &-block {
