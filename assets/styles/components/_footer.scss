@@ -1,0 +1,99 @@
+.footer {
+  background: linear-gradient(187.91deg, #090B1A 10.06%, #060B17 90.18%);
+  padding: 90px 0;
+
+  &-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    align-items: start;
+  }
+
+  &-logo-block {
+    .logo {
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    .footer-company-info {
+      p {
+        font-size: 14px;
+        color: var(--text-color);
+        font-weight: 500;
+        &:first-child {
+          text-transform: uppercase;
+          margin-bottom: 12px;
+          font-weight: 600;
+        }
+        span {
+          color: #FFFFFF54;
+        }
+      }
+    }
+  }
+
+  &-kpp {
+    margin-left: 12px;
+  }
+
+  &-section {
+    h4 {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text-color);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    ul {
+      li {
+        margin-bottom: 20px;
+        color: #FFFFFFCC;
+        font-weight: 400;
+        font-size: 16px;
+        transition: all .3s ease;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &:hover {
+          color: var(--primary-color)
+        }
+      }
+    }
+  }
+
+  &-contacts {
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      i {
+        color: #519ADD;
+        margin-right: 8px;
+        height: 16px;
+      }
+    }
+
+    &-link {
+      text-decoration: underline;
+    }
+  }
+
+  &-btn {
+    margin-top: 20px;
+    background-color: #2e7dd1;
+    border: none;
+    color: var(--text-color);
+    padding: 8px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #1a5fa5;
+    }
+  }
+}

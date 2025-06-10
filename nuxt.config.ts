@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   ssr: true,
-  css: ['@/assets/scss/main.scss', '@/assets/scss/font-icons/app-icons.css'], // '@/public/font-icons/app-icons.css'
+  css: ['@/assets/scss/main.scss', '@/assets/scss/font-icons/app-icons.css', '@/assets/styles/components/_footer.scss'], // '@/public/font-icons/app-icons.css'
   modules: [
     '@nuxt/fonts', 
     '@nuxt/image',
