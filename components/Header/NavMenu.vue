@@ -10,7 +10,7 @@
       >
         <span class="dropdown-toggle">
           {{ item.label }}
-          <i class="icon-arrow-down" :class="{ rotated: openedDropdown === item.label }" />
+          <svgoArrowDown class="icon-arrow-down" :class="{ rotated: openedDropdown === item.label }" />
         </span>
         <div class="dropdown-menu" v-show="openedDropdown === item.label">
           <nuxt-link
@@ -87,14 +87,22 @@ useClickOutside(
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-
-    &:hover {
-      color: var(--primary-color);
-    }
   }
 
   .dropdown {
     position: relative;
+
+    &:hover .dropdown-toggle {
+      color: var(--primary-color);
+
+      .icon-arrow-down {
+        fill: var(--primary-color);
+      }
+    }
+
+    &:hover .dropdown-menu {
+      display: block;
+    }
 
     .dropdown-menu {
       display: none;
@@ -105,10 +113,16 @@ useClickOutside(
       padding: 10px;
       border-radius: 4px;
       z-index: 10;
-    }
 
-    &:hover .dropdown-menu {
-      display: block;
+      a {
+        display: block;
+        padding: 8px 12px;
+        color: white;
+
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
     }
 
     &.is-open .dropdown-menu {
@@ -116,10 +130,18 @@ useClickOutside(
     }
   }
 
+  .dropdown-toggle {
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+
   .icon-arrow-down {
     margin-left: 6px;
-    color: #ffffff40;
-    transition: transform 0.3s ease;
+    width: 16px;
+    height: 16px;
+    fill: #ffffff40;
+    transition: transform 0.3s ease, fill 0.3s ease;
   }
 
   .rotated {
@@ -151,11 +173,19 @@ useClickOutside(
       flex-direction: column;
       align-items: center;
 
+      &:hover .dropdown-menu {
+        display: none;
+      }
+
       .dropdown-menu {
         display: none;
         position: static;
         padding: 10px 0 0 12px;
         background: transparent;
+
+        a {
+          padding: 8px 0;
+        }
       }
 
       &.is-open .dropdown-menu {
@@ -166,6 +196,11 @@ useClickOutside(
     a,
     .dropdown-toggle {
       font-size: 18px;
+    }
+
+    .icon-arrow-down {
+      width: 18px;
+      height: 18px;
     }
   }
 }

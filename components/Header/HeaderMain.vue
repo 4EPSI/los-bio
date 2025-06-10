@@ -6,7 +6,7 @@
 
     <NavMenu :menu-items="menuItems" :is-open="isOpen" @close="isOpen = false" />
     
-    <CallToActionButton>Получить КП</CallToActionButton>
+    <UIButton>Получить КП</UIButton>
 
     <button class="burger" @click="toggleMenu" aria-label="Меню">
       <span :class="{ open: isOpen }"></span>
@@ -18,7 +18,7 @@
 import { ref } from 'vue'
 import { useClickOutside } from '~/composables/useClickOutside'
 import NavMenu from '~/components/Header/NavMenu.vue'
-import CallToActionButton from '~/components/UI/CallToActionButton.vue'
+import UIButton from '~/components/UI/UIButton.vue'
 
 const isOpen = ref(false)
 const menuRef = ref<HTMLElement | null>(null)

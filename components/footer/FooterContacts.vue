@@ -3,11 +3,10 @@
     <h4>КОНТАКТЫ</h4>
     <ul class="footer-contacts">
       <li v-for="(item, index) in contacts" :key="index">
-        <i :class="item.icon"></i>
+        <component :is="getSvgIcon(item.icon)" class="svg-icon" :aria-label="`${item.label} icon`" />
         <component
           :is="item.isLink ? 'a' : 'nuxt-link'"
-          :href="item.isLink ? item.href : undefined"
-          :to="!item.isLink ? item.href : undefined"
+          v-bind="item.isLink ? { href: item.href } : { to: item.href }"
           :class="[
             'footer-contacts-link',
             item.href.startsWith('tel:') ? 'no-underline' : ''
@@ -17,11 +16,12 @@
         </component>
       </li>
     </ul>
-    <button class="footer-btn">Получить КП</button>
+    <UIButton>Получить КП</UIButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import UIButton from '~/components/UI/UIButton.vue'
 interface ContactItem {
   icon: string
   label: string
@@ -32,10 +32,18 @@ interface ContactItem {
 defineProps<{
   contacts: ContactItem[]
 }>()
+
+function getSvgIcon(iconName: string) {
+  const componentName = `Svgo${iconName.charAt(0).toUpperCase() + iconName.slice(1)}`;
+  return componentName;
+}
 </script>
 
 <style scoped lang="scss">
 .no-underline {
   text-decoration: none !important;
+}
+:deep(.btn) {
+  margin-top: 20px;
 }
 </style>

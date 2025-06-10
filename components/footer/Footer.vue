@@ -44,9 +44,9 @@ const catalogLinks: FooterLink[] = [
 ]
 
 const contacts = [
-  { icon: 'icon-phone-bg', label: '+7 (391) 209–57–57', href: 'tel:+73912095757', isLink: true },
-  { icon: 'icon-phone-bg', label: '+7 (391) 209–57–57', href: 'tel:+73912095757', isLink: true },
-  { icon: 'icon-mail', label: 'los-bio@mail.ru', href: 'mailto:los-bio@mail.ru', isLink: true },
-  { icon: 'icon-arrow-right', label: 'Заказать звонок', href: '/', isLink: false }
+  { icon: 'phone-bg', label: '+7 (391) 209–57–57', href: 'tel:+73912095757', isLink: true },
+  { icon: 'phone-bg', label: '+7 (391) 209–57–57', href: 'tel:+73912095757', isLink: true },
+  { icon: 'mail', label: 'los-bio@mail.ru', href: 'mailto:los-bio@mail.ru', isLink: true },
+  { icon: 'arrow-right', label: 'Заказать звонок', href: '/', isLink: false }
 ]
 </script>
