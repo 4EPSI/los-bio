@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     autoImportPath: './assets/icons/',
   },
   image: {
+    domains: ['api.los-bio.ru'],
     screens: {
       xs: 375,
       sm: 768,
