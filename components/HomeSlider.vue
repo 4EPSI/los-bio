@@ -1,28 +1,26 @@
 <template>
   <div class="home">
     <SwiperSlider>
-      <template #slide-0>
+      <template
+        v-for="(slide, index) in slides"
+        v-slot:[`slide-${index}`]
+      >
         <div class="home-block">
           <div class="home-content">
-            <h1>Автономная канализация для частного дома</h1>
-            <p>Производим автономные канализации, очистные сооружения, накопительные ёмкости и различные комплектующие к ним.</p>
-    
-            <UIButton>Перейти в каталог</UIButton>
+            <h1>{{ slide.title }}</h1>
+            <p>{{ slide.description }}</p>
+            <UIButton>{{ slide.btnText }}</UIButton>
           </div>
           <div class="home-slider">
             <nuxt-img
-              src="/images/home-slider.svg"
+              :src="`https://api.los-bio.ru/files/${slide.image?.[0]?.catalog}/${slide.image?.[0]?.name}`"
               alt="img"
               class="banner-image"
-              :width="364"
-              :height="482"
+              width="auto"
+              height="auto"
             />
           </div>
         </div>
-      </template>
-
-      <template #slide-1>
-        123
       </template>
     </SwiperSlider>
   </div>
@@ -33,7 +31,16 @@ import UIButton from '~/components/UI/UIButton.vue'
 import SwiperSlider from '~/components/SwiperSlider.vue'
 
 const { data, pending, error } = await useFetch('https://api.los-bio.ru/info/group/slide')
+const slides = (data.value || []).map((item) => {
+  try {
+    return JSON.parse(item.value)
+  } catch (e) {
+    console.error('Ошибка парсинга value:', item.value)
+    return null
+  }
+}).filter(Boolean)
 
+console.log(slides)
 
 </script>
 
