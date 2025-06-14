@@ -46,7 +46,6 @@ console.log(slides)
 
 <style lang="scss" scoped>
 .home {
-  height: 90vh;
   padding-top: 80px;
   padding-bottom: 148px;
 &-block {
@@ -73,5 +72,52 @@ console.log(slides)
 :deep(.btn) {
   padding: 16px 40px;
   border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .home-block {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .home-content {
+    text-align: center;
+
+    h1 {
+      font-size: 32px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      word-break: break-word;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 32px;
+      word-break: break-word;
+    }
+  }
+
+  .home-slider {
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  :deep(.btn) {
+    font-size: 14px;
+    padding: 12px 24px;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
+  }
 }
 </style>
