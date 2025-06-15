@@ -30,17 +30,16 @@
 import UIButton from '~/components/UI/UIButton.vue'
 import SwiperSlider from '~/components/SwiperSlider.vue'
 
-const { data, pending, error } = await useFetch('https://api.los-bio.ru/info/group/slide')
-const slides = (data.value || []).map((item) => {
-  try {
-    return JSON.parse(item.value)
-  } catch (e) {
-    console.error('Ошибка парсинга value:', item.value)
-    return null
-  }
-}).filter(Boolean)
+import { useParsedGroupData } from '~/composables/useParsedGroupData';
 
-console.log(slides)
+interface Slide {
+  title: string
+  description: string
+  btnText: string
+  image: Array<{ catalog: string; name: string }>
+}
+
+const { data: slides, pending, error } = useParsedGroupData<Slide>('slide')
 
 </script>
 

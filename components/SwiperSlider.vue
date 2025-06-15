@@ -68,6 +68,7 @@ const slideSlotCount = computed(() => {
   position: relative;
   width: 100%;
   height: 100%;
+  padding-bottom: 80px;
 }
 
 .custom-swiper {
@@ -125,5 +126,10 @@ const slideSlotCount = computed(() => {
 
 :deep(.swiper-pagination) {
   display: none;
+}
+@media (max-width: 480px) {
+  .swiper-custom-container {
+    padding-bottom: 40px;
+  }
 }
 </style>

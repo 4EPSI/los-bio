@@ -1,11 +1,15 @@
 <template>
   <div>
     <HomeSlider />
-    <i class="icon-map"></i>
+    <OurAdvantages />
+    <svgoEmail />
+    <svgoMap />
+
+    <!-- <i class="icon-map"></i> -->
     2
-    <i class="icon-phone"></i>
+    <!-- <i class="icon-phone"></i> -->
     3
-    <i class="icon-arrow-right"></i>
+    <!-- <i class="icon-arrow-right"></i> -->
 
     44
 

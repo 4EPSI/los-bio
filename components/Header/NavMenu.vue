@@ -87,6 +87,9 @@ useClickOutside(
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 
   .dropdown {
