@@ -2,6 +2,7 @@
   <div>
     <HomeSlider />
     <OurAdvantages />
+    <ProjectList />
     <svgoEmail />
     <svgoMap />
 

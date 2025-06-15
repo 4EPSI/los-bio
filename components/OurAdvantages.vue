@@ -41,6 +41,7 @@ const { data: slides, pending, error } = useParsedGroupData<Advantage>('advantag
 <style lang="scss" scoped>
 .advantages {
   h2 {
+    font-weight: 700;
     margin-bottom: 80px;
   }
   &-content {
