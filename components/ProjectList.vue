@@ -2,32 +2,47 @@
   <div class="projects">
     <h2>Проекты</h2>
     <div class="projects-content">
-      <div class="projects-item">
-        <nuxt-link to="/">
+      <div
+        class="projects-item"
+        v-for="project in data"
+        :key="project.id"
+      >
+        <nuxt-link :to="`/projects/${project.slug}`">
           <div class="projects-image">
             <nuxt-img
+              v-if="project.photos?.[0]"
               src="/images/project1.jpg"
-              alt="img"
+              alt="project image"
               width="auto"
               height="auto"
             />
           </div>
-          <h4>Проект 1</h4>
-          <div class="projects-text">Mauris varius sem lacinia felis pellentesque. Maecenas vulputate tortor mattis consectetur.</div>
-          <div class="projects-info">
-            <span>Тип работы: <span class="projects-info-type">Строительство станции биологической очистки</span></span>
+          <h4>{{ project.title }}</h4>
+          <div class="projects-text">
+            {{ project.short_description?.blocks?.[0]?.data?.text || 'Описание отсутствует' }}
           </div>
           <div class="projects-info">
-            <span>Заказчик:  <span class="projects-info-type">ИП Иван Васильев</span></span>
+            <span>Тип работы: <span class="projects-info-type">{{ project.works }}</span></span>
+          </div>
+          <div class="projects-info">
+            <span>Заказчик: <span class="projects-info-type">{{ project.customer?.trim() }}</span></span>
           </div>
         </nuxt-link>
-        
       </div>
-      <div>2</div>
-      <div>3</div>
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+const { data, pending, error } = useFetch('https://api.los-bio.ru/projects/')
+
+// try {
+//   if()
+// }
+
+console.log(data.value);
+
+</script>
 
 <style lang="scss" scoped>
 .projects {

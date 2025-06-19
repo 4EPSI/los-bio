@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SwiperSlider>
+    <SwiperSlider v-if="slides && slides.length">
       <template
         v-for="(slide, index) in slides"
         v-slot:[`slide-${index}`]
