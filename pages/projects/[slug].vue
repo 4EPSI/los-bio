@@ -21,7 +21,9 @@
           <ProjectFeatures :features="features" />
         </div>
       </div>
-      <div class="project-image">22</div>
+      <div class="project-image">
+        <ProjectGallery :photos="images" />
+      </div>
     </div>
   </div>
 </template>
@@ -74,6 +76,15 @@ const features: Array<{ title: string; text: string }> = [
     title: 'ДОЛГОВЕЧНОСТЬ',
     text: 'Стеклопластиковый корпус прослужит не менее 50 лет',
   },
+]
+
+const images = [
+  '/images/project1.jpg',
+  '/images/car.jpg',
+  '/images/ba.jpg',
+  '/images/project1.jpg',
+  '/images/car.jpg',
+  '/images/project1.jpg',
 ]
 </script>
 
