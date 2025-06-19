@@ -14,44 +14,14 @@
 
           <h5>Почему клиенты выбирают ЛОС:</h5>
 
-          <ul class="project-advantages">
-            <li>Срок службы <strong>50 лет</strong></li>
-            <li>Производительность <strong>до 15 человек</strong></li>
-            <li>Устойчивость <strong>к залповым сбросам</strong></li>
-            <li><strong>Отказ</strong>от ассенизационной машины</li>
-            <li>Работает <strong>при отключенной электроэнергии</strong></li>
-          </ul>
+          <ProjectAdvantages :items="advantages" />
 
           <h5>Также лос выбирают за:</h5>
 
-          <div class="features">
-            <div class="features-item">
-              <span>1</span>
-              <div class="features-info">
-                <div>ЭКОНОМИЧНОСТЬ</div>
-                <p>Приобретая станцию у производителя, вы добьетесь максимальной экономии</p>
-              </div>
-            </div>
-
-            <div class="features-item">
-              <span>2</span>
-              <div class="features-info">
-                <div>ЭКОЛОГИЧНОСТЬ</div>
-                <p>токи, прошедшие через установку, полностью безопасны для окружающей среды</p>
-              </div>
-            </div>
-
-            <div class="features-item">
-              <span>3</span>
-              <div class="features-info">
-                <div>ДОЛГОВЕЧНОСТЬ</div>
-                <p>Стеклопластиковый корпус прослужит не менее 50 лет</p>
-              </div>
-            </div>
-          </div>
+          <ProjectFeatures :features="features" />
         </div>
       </div>
-      <div class="project-image">222</div>
+      <div class="project-image">22</div>
     </div>
   </div>
 </template>
@@ -60,8 +30,14 @@
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
+interface Project {
+  title: string
+  image?: string
+}
+
+
 const route = useRoute()
-const project = ref(null)
+const project = ref<Project | null>(null)
 
 const fetchProject = async () => {
   try {
@@ -76,6 +52,29 @@ const fetchProject = async () => {
 }
 
 watch(() => route.params.slug, fetchProject, { immediate: true })
+
+const advantages: string[] = [
+  'Срок службы <strong>50 лет</strong>',
+  'Производительность <strong>до 15 человек</strong>',
+  'Устойчивость <strong>к залповым сбросам</strong>',
+  '<strong>Отказ</strong> от ассенизационной машины',
+  'Работает <strong>при отключенной электроэнергии</strong>',
+]
+
+const features: Array<{ title: string; text: string }> = [
+  {
+    title: 'ЭКОНОМИЧНОСТЬ',
+    text: 'Приобретая станцию у производителя, вы добьетесь максимальной экономии',
+  },
+  {
+    title: 'ЭКОЛОГИЧНОСТЬ',
+    text: 'токи, прошедшие через установку, полностью безопасны для окружающей среды',
+  },
+  {
+    title: 'ДОЛГОВЕЧНОСТЬ',
+    text: 'Стеклопластиковый корпус прослужит не менее 50 лет',
+  },
+]
 </script>
 
 <style lang="scss" scoped>
@@ -136,64 +135,6 @@ watch(() => route.params.slug, fetchProject, { immediate: true })
       text-transform: uppercase;
       color: #FFFFFFCC;
       margin-bottom: 14px;
-    }
-  }
-  &-advantages {
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 160%;
-      margin-bottom: 32px;
-    li {
-      position: relative;
-      padding-left: 32px;
-      margin-bottom: 22px;
-
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 9px;
-        width: 8px;
-        height: 8px;
-        border: 2px solid var(--primary-color);
-        border-radius: 50%;
-        background-color: transparent;
-      }
-      strong {
-        font-weight: 700;
-      }
-    }
-  }
-}
-
-.features {
-  &-item {
-    display: flex;
-    margin-bottom: 16px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    span {
-      color: var(--primary-color);
-      border: 2px solid var(--primary-color);
-      border-radius: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-      font-size: 10px;
-      height: 24px;
-      min-width: 24px;
-    }
-  }
-  &-info {
-    div {
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 160%;
-    }
-    p {
-      font-weight: 400;
     }
   }
 }
